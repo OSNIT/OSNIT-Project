@@ -7,7 +7,7 @@ const apikey = "6euuOH5u43q9fABmaHzHBdo9c";
 const apisecret = "FEwXEkHyh4kkYCQeVNhJcN7asqFkY6ll8CjBEzpQCSHeHmhXj5";
 const tokenkey = "1356770346616172546-9khlFVMN4YIwrw0ApW3m8fUqHDnyg5";
 const tokensecret = "7kYTyg4A7uJbzRuCd1oy3t3tAZPPZWXZZ6QvNHThlY7YX";
-const counts = 40;
+const counts = 50;
 const file = 'data.json';
 
 var T = new Twit({
@@ -16,7 +16,7 @@ var T = new Twit({
     access_token: tokenkey,
     access_token_secret: tokensecret
 });
-T.get('search/tweets', {q: '#stopthesteal since:2020-11-15', count:counts}, function (err, data, response){
+T.get('search/tweets', {q: '#stopthesteal since:2021-04-10', count:counts}, function (err, data, response){
     const tweet = data;
     for (let i = 0; i < counts; i++){
         if (i===2){
@@ -30,12 +30,12 @@ T.get('search/tweets', {q: '#stopthesteal since:2020-11-15', count:counts}, func
         }
 
         if (fs.existsSync(file)){
-            jsonfile.writeFile(file, jsonFormat(obj), { flag: 'a' }, function (err) {
+            jsonfile.writeFile(file, obj, { flag: 'a' }, function (err) {
                 if (err) console.error(err)
               })
         }
         else{
-            jsonfile.writeFile(file, jsonFormat(obj), function (err) {
+            jsonfile.writeFile(file, obj, function (err) {
                 if (err) console.error(err)
               })
         }
